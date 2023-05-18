@@ -1,0 +1,7 @@
+CREATE TABLE book (
+  id BIGINT AUTO_INCREMENT PRIMARY KEY,
+  title VARCHAR(100),
+  summary VARCHAR(255),
+  writer VARCHAR(30),
+  isbn VARCHAR(40)
+);
