@@ -1,13 +1,13 @@
 package com.example.readbooks.shell
 
 import com.example.readbooks.book.Book
-import com.example.readbooks.book.BookService
+import com.example.readbooks.book.BookManager
 import org.springframework.shell.standard.ShellComponent
 import org.springframework.shell.standard.ShellMethod
 import org.springframework.shell.standard.ShellOption
 
 @ShellComponent
-class BookCommand(private val bookService: BookService) {
+class BookCommand(private val bookService: BookManager) {
 	@ShellMethod(value = "List books", key = ["books list"])
 	fun findAllBooks(): String {
 		return serialize(bookService.findAll())

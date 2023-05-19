@@ -11,7 +11,7 @@ import org.springframework.transaction.annotation.Transactional
 @Transactional
 @SpringBootTest
 open class BookServiceTest(
-	private val sut: BookService
+	private val sut: BookManager
 ): ShouldSpec({
 	context("save") {
 		should("book should be saved") {
@@ -19,7 +19,8 @@ open class BookServiceTest(
 				title = "title",
 				summary = "summary",
 				writer = "writer",
-				isbn = "isbn"
+				isbn = "isbn",
+				count = 1
 			)
 
 			sut.save(expected)
@@ -36,7 +37,8 @@ open class BookServiceTest(
 				title = "title",
 				summary = "summary",
 				writer = "writer",
-				isbn = "isbn"
+				isbn = "isbn",
+				count = 1
 			)
 
 			sut.save(expected)
@@ -54,7 +56,8 @@ open class BookServiceTest(
 				title = "title",
 				summary = "summary",
 				writer = "writer",
-				isbn = "isbn"
+				isbn = "isbn",
+				count = 1
 			)
 			sut.save(expected)
 

@@ -1,12 +1,16 @@
 package com.example.readbooks.book
 
+import com.example.readbooks.reservation.BookReservation
+import com.example.readbooks.reservation.BookReservationStatus
 import org.springframework.data.annotation.Id
+import java.time.LocalDateTime
 
 class Book(
-	val title: String,
-	val summary: String,
-	val writer: String,
-	val isbn: String
+	private val title: String,
+	private val summary: String,
+	private val writer: String,
+	private val isbn: String,
+	private var count: Int
 ) {
 	@Id
 	var id: Long? = null
@@ -35,5 +39,33 @@ class Book(
 		return result
 	}
 
+	fun reserve(reservist: String, startAt: LocalDateTime): BookReservation {
+		if (count == 0) {
+			throw IllegalStateException("book is not enough")
+		}
 
+		count -= 1
+
+		return BookReservation(
+			this,
+			reservist,
+			BookReservationStatus.RESERVED,
+			startAt
+		)
+	}
+
+	fun render(reservist: String, startAt: LocalDateTime): BookReservation {
+		if (count == 0) {
+			throw IllegalStateException("book is not enough")
+		}
+
+		count -= 1
+
+		return BookReservation(
+			this,
+			reservist,
+			BookReservationStatus.RENDERED,
+			startAt
+		)
+	}
 }

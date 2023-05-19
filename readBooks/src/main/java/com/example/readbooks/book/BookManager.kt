@@ -7,7 +7,7 @@ import java.util.stream.StreamSupport
 
 @Transactional(readOnly = true)
 @Service
-open class BookService(
+open class BookManager(
 	private val bookRepository: BookRepository
 ) {
 	@Transactional
