@@ -1,5 +1,5 @@
 package com.example.readbooks.reservation
 
-enum class BookReservationStatus {
+enum class ReservationStatus {
 	RESERVED, RENDERED, RETURNED
 }

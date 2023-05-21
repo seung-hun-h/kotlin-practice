@@ -28,4 +28,8 @@ open class Library(
 		return bookReservation
 	}
 
+	open fun findReservations(bookId: Long): List<BookReservation> {
+		return bookReservationRepository.findByBookId(bookId)
+	}
+
 }

@@ -1,7 +1,18 @@
 CREATE TABLE book (
   id BIGINT AUTO_INCREMENT PRIMARY KEY,
-  title VARCHAR(100),
-  summary VARCHAR(255),
-  writer VARCHAR(30),
-  isbn VARCHAR(40)
+  title VARCHAR(100) NOT NULL,
+  summary VARCHAR(255) NOT NULL,
+  writer VARCHAR(30) NOT NULL,
+  isbn VARCHAR(40) NOT NULL,
+  count INTEGER
+);
+
+CREATE TABLE book_reservation (
+  id BIGINT AUTO_INCREMENT PRIMARY KEY,
+  reservist VARCHAR(10) NOT NULL,
+  reservation_status VARCHAR(10) NOT NULL,
+  start_at TIMESTAMP NOT NULL,
+  end_at TIMESTAMP,
+  extended_count INTEGER NOT NULL,
+  book_id LONG NOT NULL
 );

@@ -1,19 +1,22 @@
 package com.example.readbooks.book
 
 import com.example.readbooks.reservation.BookReservation
-import com.example.readbooks.reservation.BookReservationStatus
+import com.example.readbooks.reservation.ReservationStatus
 import org.springframework.data.annotation.Id
 import java.time.LocalDateTime
 
 class Book(
-	private val title: String,
-	private val summary: String,
-	private val writer: String,
-	private val isbn: String,
-	private var count: Int
+	val title: String,
+	val summary: String,
+	val writer: String,
+	val isbn: String,
+	count: Int
 ) {
 	@Id
 	var id: Long? = null
+
+	var count = count
+		private set
 
 	override fun equals(other: Any?): Boolean {
 		if (this === other) return true
@@ -49,7 +52,7 @@ class Book(
 		return BookReservation(
 			this,
 			reservist,
-			BookReservationStatus.RESERVED,
+			ReservationStatus.RESERVED,
 			startAt
 		)
 	}
@@ -64,7 +67,7 @@ class Book(
 		return BookReservation(
 			this,
 			reservist,
-			BookReservationStatus.RENDERED,
+			ReservationStatus.RENDERED,
 			startAt
 		)
 	}

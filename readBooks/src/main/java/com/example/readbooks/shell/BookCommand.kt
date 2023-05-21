@@ -10,17 +10,17 @@ import org.springframework.shell.standard.ShellOption
 class BookCommand(private val bookService: BookManager) {
 	@ShellMethod(value = "List books", key = ["books list"])
 	fun findAllBooks(): String {
-		return serialize(bookService.findAll())
+		return convert(bookService.findAll())
 	}
 
 	@ShellMethod(value = "Find book by id", key = ["books find -id"])
 	fun findBookById(id: Long): String {
-		return serialize(bookService.findById(id))
+		return convert(bookService.findById(id))
 	}
 
 	@ShellMethod(value = "Find book by title", key = ["books find -title"])
 	fun findBooksByTitle(title: String): String {
-		return serialize(bookService.findAllByTitle(title))
+		return convert(bookService.findAllByTitle(title))
 	}
 
 	@ShellMethod(value = "Register book", key = ["books register"])
@@ -28,9 +28,10 @@ class BookCommand(private val bookService: BookManager) {
 		@ShellOption(value = ["--t"]) title: String,
 		@ShellOption(value = ["--s"]) summary: String,
 		@ShellOption(value = ["--w"]) writer: String,
-		@ShellOption(value = ["--i"]) isbn: String
+		@ShellOption(value = ["--i"]) isbn: String,
+		@ShellOption(value = ["--c"], defaultValue = "1") count: Int
 	) {
-		val book = Book(title, summary, writer, isbn)
+		val book = Book(title, summary, writer, isbn, count)
 		bookService.save(book)
 	}
 }
