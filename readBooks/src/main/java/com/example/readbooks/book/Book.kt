@@ -3,17 +3,32 @@ package com.example.readbooks.book
 import com.example.readbooks.reservation.BookReservation
 import com.example.readbooks.reservation.ReservationStatus
 import org.springframework.data.annotation.Id
-import java.time.LocalDateTime
+import java.time.LocalDate
+import java.time.Period
 
 class Book(
+	@Id
+	var id: Long?,
 	val title: String,
 	val summary: String,
 	val writer: String,
 	val isbn: String,
 	count: Int
 ) {
-	@Id
-	var id: Long? = null
+	constructor(
+		title: String,
+		summary: String,
+		writer: String,
+		isbn: String,
+		count: Int
+	): this(
+		id = null,
+		title = title,
+		summary = summary,
+		writer = writer,
+		isbn = isbn,
+		count = count
+	)
 
 	var count = count
 		private set
@@ -42,33 +57,21 @@ class Book(
 		return result
 	}
 
-	fun reserve(reservist: String, startAt: LocalDateTime): BookReservation {
-		if (count == 0) {
-			throw IllegalStateException("book is not enough")
-		}
-
-		count -= 1
-
+	fun reserve(reservist: String, startAt: LocalDate): BookReservation {
 		return BookReservation(
-			this,
+			this.id!!,
 			reservist,
 			ReservationStatus.RESERVED,
 			startAt
 		)
 	}
 
-	fun render(reservist: String, startAt: LocalDateTime): BookReservation {
+	fun  render(bookReservation: BookReservation, period: Period) {
 		if (count == 0) {
-			throw IllegalStateException("book is not enough")
+			throw IllegalStateException("Book is not enough")
 		}
 
+		bookReservation.renderUntil(bookReservation.startAt.plus(period))
 		count -= 1
-
-		return BookReservation(
-			this,
-			reservist,
-			ReservationStatus.RENDERED,
-			startAt
-		)
 	}
 }

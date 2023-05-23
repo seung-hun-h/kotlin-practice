@@ -26,7 +26,7 @@ open class BookManager(
 	}
 
 	open fun findAllByTitle(title: String): List<Book> {
-		return bookRepository.findAllByTitle(title)
+		return bookRepository.findBooksByTitle(title)
 	}
 
 	@Transactional

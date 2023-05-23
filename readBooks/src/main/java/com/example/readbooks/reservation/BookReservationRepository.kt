@@ -1,11 +1,13 @@
 package com.example.readbooks.reservation
 
-import org.springframework.data.jdbc.repository.query.Query
 import org.springframework.data.repository.CrudRepository
-import java.time.LocalDateTime
+import java.time.LocalDate
 
 interface BookReservationRepository: CrudRepository<BookReservation, Long>{
-	fun existsBookReservationByBookIdAndReservist(bookId: Long, reservist: String): Boolean
+	fun existsByBookIdAndReservist(bookId: Long, reservist: String): Boolean
+
+	fun existsByBookIdAndStartAtAndReservationStatusIsIn(bookId: Long, startAt: LocalDate, vararg reservationStatus: ReservationStatus): Boolean
 
 	fun findByBookId(bookId: Long): List<BookReservation>
+	fun findByBookIdAndReservistAndStartAtAndReservationStatus(bookId: Long, reservist: String, startAt: LocalDate, reserved: ReservationStatus): BookReservation?
 }

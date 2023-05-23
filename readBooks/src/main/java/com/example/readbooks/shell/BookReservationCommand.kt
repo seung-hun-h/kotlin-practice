@@ -4,7 +4,7 @@ import com.example.readbooks.reservation.Library
 import org.springframework.shell.standard.ShellComponent
 import org.springframework.shell.standard.ShellMethod
 import org.springframework.shell.standard.ShellOption
-import java.time.LocalDateTime
+import java.time.LocalDate
 
 @ShellComponent
 class BookReservationCommand(
@@ -21,7 +21,7 @@ class BookReservationCommand(
 	fun reserveBook(
 		@ShellOption bookId: Long,
 		@ShellOption reservist: String,
-		@ShellOption startAt: LocalDateTime
+		@ShellOption startAt: LocalDate
 	): String {
 		library.reserve(bookId, reservist, startAt)
 		return "book is reserved"

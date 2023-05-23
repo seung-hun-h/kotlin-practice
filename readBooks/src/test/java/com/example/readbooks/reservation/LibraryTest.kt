@@ -4,11 +4,10 @@ import com.example.readbooks.book.Book
 import com.example.readbooks.book.BookRepository
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.ShouldSpec
-import io.kotest.matchers.date.shouldBeAfter
 import io.kotest.matchers.shouldBe
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.transaction.annotation.Transactional
-import java.time.LocalDateTime
+import java.time.LocalDate
 
 @Transactional
 @SpringBootTest
@@ -16,17 +15,22 @@ open class LibraryTest(
 	private val sut: Library,
 	private val bookRepository: BookRepository
 ): ShouldSpec({
+	val book = Book(
+		title = "title",
+		summary = "summary",
+		writer = "writer",
+		isbn = "isbn",
+		count = 1
+	)
+
+	 beforeTest {
+		 bookRepository.save(book)
+	 }
+
+
 	context("reserve") {
 		should("returned BookReservation") {
-			val book = Book(
-				title = "title",
-				summary = "summary",
-				writer = "writer",
-				isbn = "isbn",
-				count = 1
-			)
-			bookRepository.save(book)
-			val startAt = LocalDateTime.now()
+			val startAt = LocalDate.now()
 
 			val reservation = sut.reserve(book.id!!, "nt11906", startAt)
 
@@ -46,13 +50,29 @@ open class LibraryTest(
 				count = 1
 			)
 			bookRepository.save(book)
-			val startAt = LocalDateTime.now()
+			val startAt = LocalDate.now()
 			sut.reserve(book.id!!, "nt11906", startAt)
 
 			shouldThrow<Exception> {
 				sut.reserve(book.id!!, "nt11906", startAt)
 			}
 
+		}
+	}
+	context("render") {
+		should("render a book successfully") {
+			// Given
+			val bookId = book.id!!
+			val reservist = "John Doe"
+			val startAt = LocalDate.now()
+
+			// When
+			val result = sut.render(bookId, reservist, startAt)
+
+			// Then
+			book.count shouldBe 0
+			result.reservationStatus shouldBe ReservationStatus.RESERVED
+			result.endAt shouldBe startAt.plus(BookReservation.MAX_RENDER_DURATION)
 		}
 	}
 })
