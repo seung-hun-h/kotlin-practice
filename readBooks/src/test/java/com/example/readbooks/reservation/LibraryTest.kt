@@ -42,14 +42,6 @@ open class LibraryTest(
 		}
 
 		should("cannot reserve same book") {
-			val book = Book(
-				title = "title",
-				summary = "summary",
-				writer = "writer",
-				isbn = "isbn",
-				count = 1
-			)
-			bookRepository.save(book)
 			val startAt = LocalDate.now()
 			sut.reserve(book.id!!, "nt11906", startAt)
 
@@ -70,7 +62,8 @@ open class LibraryTest(
 			val result = sut.render(bookId, reservist, startAt)
 
 			// Then
-			book.count shouldBe 0
+			val savedBook = bookRepository.findById(bookId).get()
+			savedBook.count shouldBe 0
 			result.reservationStatus shouldBe ReservationStatus.RESERVED
 			result.endAt shouldBe startAt.plus(BookReservation.MAX_RENDER_DURATION)
 		}
