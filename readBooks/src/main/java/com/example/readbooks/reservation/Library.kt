@@ -15,11 +15,11 @@ open class Library(
 	@Transactional
 	open fun reserve(bookId: Long, reservist: String, startAt: LocalDate): BookReservation {
 		if (bookReservationRepository.existsByBookIdAndReservist(bookId, reservist)) {
-			throw IllegalArgumentException("Can only rent one copy of the same book at a time")
+			throw IllegalArgumentException("$reservist already reserved that book. bookId=$bookId")
 		}
 
 		if (bookReservationRepository.existsByBookIdAndStartAtAndReservationStatusIsIn(bookId, startAt, ReservationStatus.RESERVED, ReservationStatus.RENDERED)) {
-			throw IllegalStateException("BookReservation already exist")
+			throw IllegalStateException("Book[id=$bookId] is already reserved at $startAt. reservist=$reservist")
 		}
 
 		val book = bookManager.findById(bookId)
