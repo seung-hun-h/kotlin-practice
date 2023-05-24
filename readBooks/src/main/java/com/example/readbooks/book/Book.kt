@@ -66,7 +66,7 @@ class Book(
 		)
 	}
 
-	fun  render(bookReservation: BookReservation, period: Period) {
+	fun render(bookReservation: BookReservation, period: Period) {
 		if (count == 0) {
 			throw IllegalStateException("Book is not enough")
 		}
