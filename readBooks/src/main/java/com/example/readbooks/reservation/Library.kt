@@ -18,7 +18,7 @@ open class Library(
 			throw IllegalArgumentException("$reservist already reserved that book. bookId=$bookId")
 		}
 
-		if (bookReservationRepository.existsByBookIdAndStartAtAndReservationStatusIsIn(bookId, startAt, ReservationStatus.RESERVED, ReservationStatus.RENDERED)) {
+		if (bookReservationRepository.existsByBookIdAndStartAtAndReservationStatusIsIn(bookId, startAt, listOf(ReservationStatus.RESERVED, ReservationStatus.RENDERED))) {
 			throw IllegalStateException("Book[id=$bookId] is already reserved at $startAt. reservist=$reservist")
 		}
 
