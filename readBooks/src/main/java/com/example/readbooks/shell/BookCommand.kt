@@ -2,13 +2,14 @@ package com.example.readbooks.shell
 
 import com.example.readbooks.book.Book
 import com.example.readbooks.book.BookManager
+import org.springframework.context.annotation.Profile
 import org.springframework.shell.component.flow.ComponentFlow
 import org.springframework.shell.component.flow.ResultMode
 import org.springframework.shell.standard.ShellComponent
 import org.springframework.shell.standard.ShellMethod
 import org.springframework.shell.standard.ShellOption
 
-
+@Profile("shell")
 @ShellComponent
 open class BookCommand(
 	private val bookService: BookManager,

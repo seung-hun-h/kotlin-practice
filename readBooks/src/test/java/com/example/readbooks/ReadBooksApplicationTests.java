@@ -3,7 +3,7 @@ package com.example.readbooks;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
-@SpringBootTest()
+@SpringBootTest
 class ReadBooksApplicationTests {
 
 	@Test
