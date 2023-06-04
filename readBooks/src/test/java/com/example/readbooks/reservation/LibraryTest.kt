@@ -1,7 +1,10 @@
 package com.example.readbooks.reservation
 
-import com.example.readbooks.book.Book
-import com.example.readbooks.book.BookRepository
+import com.example.readbooks.book.entity.Book
+import com.example.readbooks.book.repository.BookRepository
+import com.example.readbooks.reservation.entity.BookReservation
+import com.example.readbooks.reservation.entity.ReservationStatus
+import com.example.readbooks.reservation.service.Library
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.ShouldSpec
 import io.kotest.matchers.shouldBe

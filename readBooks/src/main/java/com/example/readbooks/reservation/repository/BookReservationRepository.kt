@@ -1,5 +1,7 @@
-package com.example.readbooks.reservation
+package com.example.readbooks.reservation.repository
 
+import com.example.readbooks.reservation.entity.BookReservation
+import com.example.readbooks.reservation.entity.ReservationStatus
 import org.springframework.data.repository.CrudRepository
 import java.time.LocalDate
 

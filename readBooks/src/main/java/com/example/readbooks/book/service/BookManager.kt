@@ -1,5 +1,7 @@
-package com.example.readbooks.book
+package com.example.readbooks.book.service
 
+import com.example.readbooks.book.repository.BookRepository
+import com.example.readbooks.book.entity.Book
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 import java.util.stream.Collectors

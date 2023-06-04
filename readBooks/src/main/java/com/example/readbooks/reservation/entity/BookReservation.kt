@@ -1,4 +1,4 @@
-package com.example.readbooks.reservation
+package com.example.readbooks.reservation.entity
 
 import org.springframework.data.annotation.Id
 import java.time.LocalDate

@@ -1,6 +1,9 @@
-package com.example.readbooks.reservation
+package com.example.readbooks.reservation.service
 
-import com.example.readbooks.book.BookManager
+import com.example.readbooks.book.service.BookManager
+import com.example.readbooks.reservation.entity.BookReservation
+import com.example.readbooks.reservation.repository.BookReservationRepository
+import com.example.readbooks.reservation.entity.ReservationStatus
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 import java.time.LocalDate

@@ -1,7 +1,7 @@
-package com.example.readbooks.book
+package com.example.readbooks.book.entity
 
-import com.example.readbooks.reservation.BookReservation
-import com.example.readbooks.reservation.ReservationStatus
+import com.example.readbooks.reservation.entity.BookReservation
+import com.example.readbooks.reservation.entity.ReservationStatus
 import org.springframework.data.annotation.Id
 import java.time.LocalDate
 import java.time.Period

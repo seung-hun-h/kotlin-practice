@@ -1,5 +1,5 @@
-import com.example.readbooks.book.Book
-import com.example.readbooks.reservation.ReservationStatus
+import com.example.readbooks.book.entity.Book
+import com.example.readbooks.reservation.entity.ReservationStatus
 import io.kotest.core.spec.style.ShouldSpec
 import io.kotest.matchers.shouldBe
 import java.time.LocalDate

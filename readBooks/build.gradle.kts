@@ -13,12 +13,12 @@ repositories {
 	mavenCentral()
 }
 
-extra["springShellVersion"] = "3.0.3"
 extra["testcontainersVersion"] = "1.18.1"
 
 dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-data-jdbc")
-	implementation("org.springframework.shell:spring-shell-starter")
+	implementation("org.springframework.boot:spring-boot-starter-web")
+
 	runtimeOnly("com.h2database:h2")
 
 	testImplementation("org.assertj:assertj-core:3.24.2")
@@ -35,7 +35,6 @@ dependencies {
 dependencyManagement {
 	imports {
 		mavenBom("org.testcontainers:testcontainers-bom:${property("testcontainersVersion")}")
-		mavenBom("org.springframework.shell:spring-shell-dependencies:${property("springShellVersion")}")
 	}
 }
 

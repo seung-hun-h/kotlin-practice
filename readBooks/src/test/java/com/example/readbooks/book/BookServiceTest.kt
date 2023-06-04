@@ -1,5 +1,7 @@
 package com.example.readbooks.book
 
+import com.example.readbooks.book.entity.Book
+import com.example.readbooks.book.service.BookManager
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.ShouldSpec
 import io.kotest.matchers.collections.shouldContain
