@@ -2,7 +2,7 @@ package com.example.readbooks.web.book
 
 import com.example.readbooks.book.entity.Book
 import com.example.readbooks.book.service.BookService
-import com.example.readbooks.book.repository.dto.GetBooksRequest
+import com.example.readbooks.book.repository.dto.GetBookParams
 import jakarta.validation.Valid
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.DeleteMapping
@@ -17,7 +17,7 @@ class BookController(
 	private val bookService: BookService
 ) {
 	@GetMapping
-	fun getBooks(@Valid request: GetBooksRequest): ResponseEntity<List<Book>> {
+	fun getBooks(@Valid request: GetBookParams): ResponseEntity<List<Book>> {
 		return ResponseEntity.ok(bookService.get(request))
 	}
 
