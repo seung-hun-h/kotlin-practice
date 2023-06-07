@@ -6,7 +6,7 @@ plugins {
 	id("io.spring.dependency-management") version "1.1.0"
 	kotlin("jvm") version "1.8.21"
 	kotlin("plugin.spring") version "1.8.21"
-	kotlin("kapt") version "1.8.21"
+//	kotlin("kapt") version "1.8.21"
 }
 
 group = "com.example"
@@ -27,8 +27,8 @@ dependencies {
 
 	runtimeOnly("com.h2database:h2")
 
-	implementation("com.querydsl:querydsl-sql:$queryDslVersion")
-	implementation("com.querydsl:querydsl-sql-codegen:$queryDslVersion")
+//	implementation("com.querydsl:querydsl-sql:$queryDslVersion")
+//	implementation("com.querydsl:querydsl-sql-codegen:$queryDslVersion")
 
 	testImplementation("org.assertj:assertj-core:3.24.2")
 	testImplementation("org.testcontainers:junit-jupiter")
