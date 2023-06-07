@@ -6,11 +6,13 @@ plugins {
 	id("io.spring.dependency-management") version "1.1.0"
 	kotlin("jvm") version "1.8.21"
 	kotlin("plugin.spring") version "1.8.21"
+	kotlin("kapt") version "1.8.21"
 }
 
 group = "com.example"
 version = "0.0.1-SNAPSHOT"
 java.sourceCompatibility = JavaVersion.VERSION_17
+val queryDslVersion = "5.0.0"
 
 repositories {
 	mavenCentral()
@@ -24,6 +26,9 @@ dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-validation")
 
 	runtimeOnly("com.h2database:h2")
+
+	implementation("com.querydsl:querydsl-sql:$queryDslVersion")
+	implementation("com.querydsl:querydsl-sql-codegen:$queryDslVersion")
 
 	testImplementation("org.assertj:assertj-core:3.24.2")
 	testImplementation("org.testcontainers:junit-jupiter")

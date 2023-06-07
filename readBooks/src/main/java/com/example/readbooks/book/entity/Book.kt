@@ -1,10 +1,6 @@
 package com.example.readbooks.book.entity
 
-import com.example.readbooks.reservation.entity.BookReservation
-import com.example.readbooks.reservation.entity.ReservationStatus
 import org.springframework.data.annotation.Id
-import java.time.LocalDate
-import java.time.Period
 
 class Book(
 	@Id
@@ -55,23 +51,5 @@ class Book(
 		result = 31 * result + isbn.hashCode()
 		result = 31 * result + (id?.hashCode() ?: 0)
 		return result
-	}
-
-	fun reserve(reservist: String, startAt: LocalDate): BookReservation {
-		return BookReservation(
-			this.id!!,
-			reservist,
-			ReservationStatus.RESERVED,
-			startAt
-		)
-	}
-
-	fun render(bookReservation: BookReservation, period: Period) {
-		if (count == 0) {
-			throw IllegalStateException("Book is not enough")
-		}
-
-		bookReservation.renderUntil(bookReservation.startAt.plus(period))
-		count -= 1
 	}
 }
